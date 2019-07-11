@@ -6,7 +6,16 @@
 
 ### HPatches
 
-http://icvl.ee.ic.ac.uk/vbalnt/hpatches/hpatches-sequences-release.tar.gz
+Download http://icvl.ee.ic.ac.uk/vbalnt/hpatches/hpatches-sequences-release.tar.gz and also create a folder min_hpatches. Then, in **this** directory, do:
+```bash
+ln -s your/path/to/hpatches .
+ln -s your/path/to/min_hpatches .
+```
+Finally, parse the downscaled `min_hpatches` by running the following in python:
+```python
+import rpg_datasets_py.hpatches
+rpg_datasets_py.hpatches.createMinHpatches()
+```
 
 ### KITTI
 
