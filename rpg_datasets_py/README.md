@@ -1,27 +1,38 @@
-# rpg_datasets_py
-A more pythonic version of rpg_datasets
+# rpg_datasets_py for IMIPS
 
-Unlike [rpg_datasets](https://github.com/uzh-rpg/rpg_datasets), this allows direct pythonic instantiation of any dataset class:
+## Linking up datasets
+
+### EuRoC
+
+Download at least `V1_01_easy` from https://projects.asl.ethz.ch/datasets/doku.php?id=kmavvisualinertialdatasets . Then, in **this** directory, do:
+```bash
+ln -s your/path/to/euroc .
+```
+Undistort the images by running the following in python:
 ```python
-from rpg_datasets_py.hpatches import HPatches
-
-dataset = HPatches('training')
+import rpg_datasets_py.euroc
+rpg_datasets_py.euroc.undistort('V1_01_easy')
 ```
 
-Like in rpg_datasets, **strictly no dataset data** should reside here. Instead, the main approach should be `.gitignore`d symlinks that need to be created once (so you can store the actual data anywhere you like). The symlinks should be located in the root directory of this package (`ln -s source destination`, see table below). Then, a **working-directory-independent** function to locate them is provided in [symlink.py](python/rpg_datasets_py/utils/symlink.py).
 
-## Contributing
+### HPatches
 
-* Every new dataset should result in *exactly one* python file in `python/rpg_datasets_py`. Check out the utilities in `python/rpg_datasets_py/utils` and add new ones if necessary.
-* Adhere to the aforementioned symlink approach.
-* Consider using the base classes in `python/rpg_datasets_py/base.py`.
+Download http://icvl.ee.ic.ac.uk/vbalnt/hpatches/hpatches-sequences-release.tar.gz and also create a folder min_hpatches. Then, in **this** directory, do:
+```bash
+ln -s your/path/to/hpatches .
+ln -s your/path/to/min_hpatches .
+```
+Finally, parse the downscaled `min_hpatches` by running the following in python:
+```python
+import rpg_datasets_py.hpatches
+rpg_datasets_py.hpatches.createMinHpatches()
+```
 
-## Symlinks
+### KITTI
 
-| Dataset | URL | Command |
-| ------- | --- | ------- |
-| Hpatches | http://icvl.ee.ic.ac.uk/vbalnt/hpatches/hpatches-sequences-release.tar.gz | `ln -s /home/titus/data/hpatches-sequences-release hpatches` |
-| KITTI | http://www.cvlibs.net/datasets/kitti/eval_odometry.php | `ln -s /home/titus/data/kitti .` |
-| Robotcar | https://robotcar-dataset.robots.ox.ac.uk/ | `ln -s /home/titus/data/robotcar .` |
+Download at least `00` (testing) and `05` (validation) from grayscale KITTI: http://www.cvlibs.net/datasets/kitti/eval_odometry.php . Then, in **this** directory, do:
+```bash
+ln -s your/path/to/kitti .
+```
 
-For Robotcar, the SDK from https://github.com/ori-drs/robotcar-dataset-sdk additionally needs to be cloned into the robotcar folder.
+### TUM mono
