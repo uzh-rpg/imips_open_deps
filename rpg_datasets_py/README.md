@@ -36,3 +36,8 @@ ln -s your/path/to/kitti .
 ```
 
 ### TUM mono
+
+Download at least sequences `01, 02, 03, 48, 49, 50` from https://vision.in.tum.de/data/datasets/mono-dataset and undistort them using https://github.com/tum-vision/mono_dataset_code . Then, in **this** directory, do:
+```bash
+ln -s your/path/to/tum_mono .
+```
