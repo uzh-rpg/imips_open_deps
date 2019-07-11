@@ -1,4 +1,4 @@
-# rpg_datasets_py
+# rpg_datasets_py for IMIPS
 
 ## Linking up datasets
 
