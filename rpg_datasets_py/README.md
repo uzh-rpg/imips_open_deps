@@ -1,6 +1,6 @@
 # rpg_datasets_py for IMIPS
 
-## Linking up datasets
+## Linking datasets
 
 ### EuRoC
 
